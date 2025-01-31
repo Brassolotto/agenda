@@ -23,7 +23,7 @@ def listar_contatos(lista_contatos):
     print("\n=== Lista de Contatos ===")
 
     if not lista_contatos:
-        print("Nenhum contato cadastrado!")
+        print("\nNenhum contato cadastrado!")
         return
     for i, contato in enumerate(lista_contatos, 1):
         print(f"\n{i}. Nome: {contato['nome']}")
@@ -52,9 +52,37 @@ def buscar_contato(lista_contatos):
     if encontrados == 0:
         print("\nNenhum contato encontrado!")
 
+def remover_contato(lista_contatos):
+    print("\n=== Remover Contato ===")
+
+    if not lista_contatos:
+        print("Nenhum contato encontrado!")
+        return
+    
+    for i, contato in enumerate(lista_contatos, 1):
+        print(f"\n{i}. Nome: {contato['nome']}")
+        print(f"   Telefone: {contato['telefone']}")
+
+    try:
+        opcao = int(input("\nDigite o número do contato a ser removido: "))
+
+        if 1 <= opcao <= len(lista_contatos):
+            contato = lista_contatos[opcao - 1]
+            print(f"\nContato selecionado: {contato['nome']}")
+
+            confirmacao = input("Confirma a remoção? (S/N): ").lower().strip()
+            if confirmacao == 's':
+                lista_contatos.pop(opcao - 1)
+                print("\nContato removido com sucesso!")
+            else:
+                print("\nOperação cancelada!")
+        else:
+            print("\nNúmero de contato inválido!")
+
+    except ValueError:
+        print("Por favor, digite um número válido!")
 
 contatos = []
-
 
 def main():
     while True:
@@ -62,7 +90,8 @@ def main():
         print("1. Adicionar contato")
         print("2. Listar contatos")
         print("3. Buscar contato")
-        print("4. Sair")
+        print("4. Remover contato")
+        print("5. Sair")
 
         opcao = input("\nEscolha uma opção: ")
  
@@ -73,7 +102,9 @@ def main():
         elif opcao == "3":
             buscar_contato(contatos)
         elif opcao == "4":
-            print("Obrigado por utilizar a Agenda!")
+            remover_contato(contatos)
+        elif opcao == "5":
+            print("Obrigado por utilizar a agenda!")
             break
         else:
             print("Opção inválida!")
