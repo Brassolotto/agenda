@@ -1,14 +1,32 @@
-def adicionar_contatos():
+def adicionar_contatos(lista_contatos):
+    print("\n=== Adicionar Novo Contato ===")
 
-    contatos = []
+    nome = input("Digite o nome: ").strip()
+    if not nome:
+        print("Nome não pode estar vazio!")
+        return
+    
+    telefone = input("Digite o telefone: ").strip()
+    if not telefone.isdigit():
+        print("Telefone deve conter apenas números: ")
+        return
+    
     contato = {
-        "nome": "Rick",
-        "telefone": "11976004453"
+        "nome": nome,
+        "telefone": telefone
     }
 
+    lista_contatos.append(contato)
+    print("Contato adicionado com sucesso!")
+
 def listar_contatos():
+    return None
 
 def buscar_contato():
+    return None
+
+
+contatos = []
 
 
 def main():
@@ -20,26 +38,17 @@ def main():
         print("4. Sair")
 
         opcao = input("\nEscolha uma opção: ")
-
-        try:
-
-            if opcao == "4":
-                print("Obrigado por utilizar a Agenda!")
-                break
-                
-            if opcao == "1":
-                entrada_usuario = adicionar_contatos()
-                continue
-            
-            if opcao == "2":
-                entrada_usuario = listar_contatos()
-                continue
-
-            if opcao == "3":
-                entrada_usuario = buscar_contato()
-                continue
-
-        except ValueError:
+ 
+        if opcao == "1":
+            adicionar_contatos(contatos)
+        elif opcao == "2":
+            listar_contatos(contatos)
+        elif opcao == "3":
+            buscar_contato(contatos)
+        elif opcao == "4":
+            print("Obrigado por utilizar a Agenda!")
+            break
+        else:
             print("Opção inválida!")
 
 if __name__ == "__main__":
