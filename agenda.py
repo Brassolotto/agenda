@@ -19,11 +19,38 @@ def adicionar_contatos(lista_contatos):
     lista_contatos.append(contato)
     print("Contato adicionado com sucesso!")
 
-def listar_contatos():
-    return None
+def listar_contatos(lista_contatos):
+    print("\n=== Lista de Contatos ===")
 
-def buscar_contato():
-    return None
+    if not lista_contatos:
+        print("Nenhum contato cadastrado!")
+        return
+    for i, contato in enumerate(lista_contatos, 1):
+        print(f"\n{i}. Nome: {contato['nome']}")
+        print(f"   Telefone: {contato['telefone']}")
+    
+
+def buscar_contato(lista_contatos):
+    print("\n=== Buscar Contato ===")
+
+    if not lista_contatos:
+        print("Nenhum contato cadastrado!")
+        return
+    
+    busca = input("Digite o nome para busca: ").lower().strip()
+    if not busca:
+        print("Digite um nome válido!")
+        return
+    
+    encontrados = 0
+    for i, contato in enumerate(lista_contatos, 1):
+        if busca in contato['nome'].lower():
+            print(f"\n{i}. Nome: {contato['nome']}")
+            print(f"   Telefone: {contato['telefone']}")
+            encontrados += 1
+
+    if encontrados == 0:
+        print("\nNenhum contato encontrado!")
 
 
 contatos = []
